@@ -16,11 +16,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <header style={{backgroundColor: 'lightblue', padding: '1rem'}}>
-          <p>Header</p>
+          <p className="header">Header</p>
         </header>
-        {children}
+        <main className="m-6">{children}</main>
         <footer style={{backgroundColor:'ghostwhite', padding: '1rem'}}>
-          <p>Footer</p>
+          <p className="footer">Footer</p>
         </footer>
       </body>
     </html>
