@@ -6,6 +6,12 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import BackButton from "@/app/components/back";
 export default function ProductDetailsClient({ productId }: { productId: number }) {
+
+  // Will call error.tsx page when got error
+  
+  // if(productId === 40) {
+  //   throw new Error("Test error boundary")
+  // }
   const { data: product, isLoading, error } = useHttp<Product>(
     `https://fakestoreapi.com/products/${productId}`
   );
