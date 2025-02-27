@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ErrorBoundary from "./error";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,11 @@ export default function RootLayout({
         <header style={{backgroundColor: 'lightblue', padding: '1rem'}}>
           <p className="header">Header</p>
         </header>
-        <main className="m-6">{children}</main>
+        <main className="m-6">
+          <ErrorBoundary>
+            {children}
+          </ErrorBoundary>
+        </main>
         <footer style={{backgroundColor:'ghostwhite', padding: '1rem'}}>
           <p className="footer">Footer</p>
         </footer>
