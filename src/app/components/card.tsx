@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function Card({ product }: { product: Product}) {
   return (
-    <div>
-        <div className="card">
+    <Link key={product.id} href={`/products/${product.id}`} className="card" > 
+        <div>
             <h2 className="card-title">{product.title.length > 40 ? `${product.title.substring(0,40)}...` : product.title}</h2>
             <div className="w-full h-40 flex justify-center">
                 <Image 
@@ -18,10 +18,9 @@ export default function Card({ product }: { product: Product}) {
             </div>
             <p className="card-footer">Price: ${product.price}</p>
             <div className="flex justify-end mt-auto">
-                <Link href={`/products/${product.id}`} className="text-blue-500" >Details </Link>
+                <span className="text-blue-500 underline">Details</span>
             </div>
         </div>
-       
-    </div>
+    </Link>
   );
 }
