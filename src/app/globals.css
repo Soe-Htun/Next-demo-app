@@ -57,7 +57,15 @@ body {
 .card-footer {
   @apply mt-4 text-sm;
 }
-.btn-error {
-  @apply px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300;
+.btn-error,
+.btn-default {
+  @apply px-4 py-2 text-white rounded-lg transition duration-300;
+}
 
+.btn-error {
+  @apply bg-red-500 hover:bg-red-600;
+
+}
+.btn-default {
+  @apply bg-blue-500 hover:bg-blue-600
 }

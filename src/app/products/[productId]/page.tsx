@@ -8,6 +8,6 @@ export const generateMetadata = ({params} : { params: { productId: number } }): 
   }
 }
 
-export default function ProductDetails({ params }: { params: { productId: number } }) {
-  return <ProductDetailsClient productId={params.productId}  />
+export default function ProductDetails() {
+  return <ProductDetailsClient />
 }
