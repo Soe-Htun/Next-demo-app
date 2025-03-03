@@ -17,20 +17,22 @@
   --card-text: #ededed;
   --card-border: #374151;
 }
-.footer {
-  color: black;
-  display: flex;
-  justify-content: center;
-}
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-}
-.footer {
-  color: black;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.header {
+  background-color: lightblue;
+  padding: 1rem;
+  text-align: center;
+}
+.content {
+  flex: 1;
+  padding: 1rem;
 }
 
 /* Card Styles */

@@ -8,6 +8,7 @@ import BackButton from "@/app/components/back";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
 import Link from "next/link";
+import { useToast } from "@/app/composables/useToast";
 
 export default function ProductDetailsClient() {
 
@@ -24,9 +25,12 @@ export default function ProductDetailsClient() {
     `https://fakestoreapi.com/products/${productId}`
   );
 
+  const { toaster } = useToast()
+
   const handleAddToCart = () => {
     if(product) {
       dispatch(addToCart({...product, quantity}))
+      toaster("success", "Added to cart successfully")
     }
   }
   const increaseQuantity = () => {
@@ -81,7 +85,7 @@ export default function ProductDetailsClient() {
         </button>
       </div>
 
-      <div className="flex space-x-3">
+      <div className="flex space-x-3 mt-3">
         <button
           onClick={handleAddToCart}
           className="btn-default mr-6"

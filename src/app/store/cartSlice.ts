@@ -13,18 +13,17 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    // addToCart: (state, action: PayloadAction<Product>) => {
-    //   state.items.push(action.payload);
-    // },
     addToCart: (state, action: PayloadAction<Product>) => {
-      const existingItem = state.items.find(item => item.id === action.payload.id);
-
-      if (existingItem) {
-        existingItem.quantity += action.payload.quantity; // Increase quantity if item exists
+      const existingItemIndex = state.items.findIndex(item => item.id === action.payload.id);
+    
+      if (existingItemIndex !== -1) {
+        // Replace the existing item with the new one, ensuring the quantity matches the latest selection
+        state.items[existingItemIndex] = { ...action.payload, quantity: action.payload.quantity };
       } else {
         state.items.push({ ...action.payload, quantity: action.payload.quantity || 1 });
       }
     },
+    
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },

@@ -6,17 +6,24 @@ import { Product } from "../@type/product";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { removeFromCart, clearCart, updateQuantity } from "../store/cartSlice";
+import BackButton from "../components/back";
+import { useToast } from "@/app/composables/useToast";
 
 export default function CartPage() {
   const cart = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { toaster } = useToast()
 
   const getTotalPrice = (): string => {
     return cart
       .reduce((acc: number, item: Product) => acc + item.price * (item.quantity || 1), 0)
       .toFixed(2);
   };
+  const handleClearCart = () => {
+    dispatch(clearCart())
+    toaster("success", "Clear cart successfully")
+  }
 
   if (cart.length === 0) {
     return (
@@ -34,6 +41,7 @@ export default function CartPage() {
 
   return (
     <div className="p-6">
+      <BackButton url="/products" />
       <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
 
       {cart.map((item: Product) => (
@@ -79,7 +87,7 @@ export default function CartPage() {
         <p className="text-lg font-bold">Total: ${getTotalPrice()}</p>
         <div className="mt-3 flex space-x-4">
             <button
-                onClick={() => dispatch(clearCart())}
+                onClick={handleClearCart}
                 className="btn-error"
             >
                 Clear Cart
